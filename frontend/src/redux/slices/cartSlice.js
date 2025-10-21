@@ -136,6 +136,7 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Handle fetching cart
       .addCase(fetchCart.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -149,6 +150,7 @@ const cartSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || "Failed to fetch cart";
       })
+      // Handle adding an item to the cart
       .addCase(addToCart.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -162,6 +164,7 @@ const cartSlice = createSlice({
         state.loading = false;
         state.error = action.payload?.message || "Failed to add to cart";
       })
+      // Handle updating cart item quantity
       .addCase(updateCartItemQuantity.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -176,6 +179,7 @@ const cartSlice = createSlice({
         state.error =
           action.payload?.message || "Failed to update cart item quantity";
       })
+      // Handle removing an item from the cart
       .addCase(removeFromCart.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -189,6 +193,7 @@ const cartSlice = createSlice({
         state.loading = false;
         state.error = action.payload?.message || "Failed to remove from cart";
       })
+      // Handle merging guest cart with user cart
       .addCase(mergeCart.pending, (state) => {
         state.loading = true;
         state.error = null;

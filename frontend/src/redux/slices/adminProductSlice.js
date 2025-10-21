@@ -72,6 +72,7 @@ const adminProductSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Fetch products
       .addCase(fetchAdminProducts.pending, (state) => {
         state.loading = true;
       })
