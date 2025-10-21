@@ -5,8 +5,8 @@ const FilterSidebar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [filters, setFilters] = useState({
-    category: "",
-    gender: "",
+    category: [],
+    gender: [],
     color: "",
     size: [],
     material: [],
@@ -60,8 +60,8 @@ const FilterSidebar = () => {
     const params = Object.fromEntries([...searchParams]);
 
     setFilters({
-      category: params.category || "",
-      gender: params.gender || "",
+      category: params.category ? params.category.split(",") : [],
+      gender: params.gender ? params.gender.split(",") : [],
       color: params.color || "",
       size: params.size ? params.size.split(",") : [],
       material: params.material ? params.material.split(",") : [],
@@ -108,11 +108,21 @@ const FilterSidebar = () => {
     const newFilters = { ...filters, minPrice: 0, maxPrice: newPrice };
     setFilters(filters);
     updateURLParams(newFilters);
-  }
+  };
 
   return (
     <div className="p-4">
-      <h3 className="text-xl font-medium text-gray-800 mb-4">Filters</h3>
+      <div className="flex justify-between items-center mb-4 ">
+        <h3 className="text-xl font-medium text-gray-800">Filters</h3>
+
+        {/* Clear Filters Button */}
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+          onClick={() => updateURLParams({})}
+        >
+          Reset
+        </button>
+      </div>
 
       {/* Category Filter */}
       <div className="mb-6">
@@ -120,11 +130,11 @@ const FilterSidebar = () => {
         {categorys.map((Category) => (
           <div key={Category} className="flex items-center mb-1">
             <input
-              type="radio"
+              type="checkbox"
               name="category"
-              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300"
+              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 accent-[#ea2e0e]"
               value={Category}
-              checked={filters.category === Category}
+              checked={filters.category.includes(Category)}
               onChange={handleFilterChange}
             />
             <span className="text-gray-700">{Category}</span>
@@ -138,12 +148,12 @@ const FilterSidebar = () => {
         {genders.map((gender) => (
           <div key={gender} className="flex items-center mb-1">
             <input
-              type="radio"
+              type="checkbox"
               name="gender"
               value={gender}
-              checked={filters.gender === gender}
+              checked={filters.gender.includes(gender)}
               onChange={handleFilterChange}
-              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300"
+              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 accent-[#ea2e0e]"
             />
             <span className="text-gray-700">{gender}</span>
           </div>
@@ -162,7 +172,7 @@ const FilterSidebar = () => {
               onClick={handleFilterChange}
               className={`w-8 h-8 rounded-full border border-gray-300 cursor-pointer transition hover:scale-105 ${
                 filters.color === color
-                  ? "ring-2 ring-offset-2 ring-blue-400"
+                  ? "ring-2 ring-offset-2 ring-[#ea2e0e]"
                   : ""
               }`}
               style={{ backgroundColor: color.toLowerCase() }}
@@ -182,7 +192,7 @@ const FilterSidebar = () => {
               value={size}
               checked={filters.size.includes(size)}
               onChange={handleFilterChange}
-              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300"
+              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 accent-[#ea2e0e]"
             />
             <span className="text-gray-700">{size}</span>
           </div>
@@ -200,7 +210,7 @@ const FilterSidebar = () => {
               value={material}
               checked={filters.material.includes(material)}
               onChange={handleFilterChange}
-              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300"
+              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 accent-[#ea2e0e]"
             />
             <span className="text-gray-700">{material}</span>
           </div>
@@ -218,7 +228,7 @@ const FilterSidebar = () => {
               value={brand}
               checked={filters.brand.includes(brand)}
               onChange={handleFilterChange}
-              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300"
+              className="mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 accent-[#ea2e0e]"
             />
             <span className="text-gray-700">{brand}</span>
           </div>
@@ -237,7 +247,7 @@ const FilterSidebar = () => {
           max={100}
           value={priceRange[1]}
           onChange={handlePriceChange}
-          className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+          className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-[#ea2e0e]"
         />
         <div className="flex justify-between text-gray-600 mt-1">
           <span>$0</span>

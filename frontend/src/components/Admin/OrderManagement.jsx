@@ -53,8 +53,8 @@ const OrderManagement = () => {
                   <td className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">
                     #{order._id}
                   </td>
-                  <td className="p-4">{order.user.name}</td>
-                  <td className="p-4">${order.totalPrice.toFixed(2)}</td>
+                  <td className="p-4">{order.user?.name || "Unknown"}</td>
+                  <td className="p-4">${order.totalPrice ? order.totalPrice.toFixed(2) : "0.00"}</td>
                   <td className="p-4">
                     <select
                       value={order.status}
@@ -99,7 +99,7 @@ const OrderManagement = () => {
               className="border border-gray-200 rounded-lg p-4"
             >
               <p className="font-bold">Order ID: #{order._id}</p>
-              <p className="text-gray-500 my-2">Customer: {order.user.name}</p>
+              <p className="text-gray-500 my-2">Customer: {order.user?.name || "Unknown"}</p>
               <p className="text-gray-500 my-2">
                 Total Price: ${order.totalPrice}
               </p>
