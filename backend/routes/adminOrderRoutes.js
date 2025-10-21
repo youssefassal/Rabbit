@@ -30,6 +30,15 @@ router.put("/:id", protect, admin, async (req, res) => {
       order.deliveredAt =
         req.body.status === "Delivered" ? Date.now() : order.deliveredAt;
 
+      // If markAsPaidAndDelivered is true, update both payment and delivery status
+      if (req.body.markAsPaidAndDelivered) {
+        order.isPaid = true;
+        order.paidAt = Date.now();
+        order.status = "Delivered";
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+      }
+
       const updatedOrder = await order.save();
       res.json(updatedOrder);
     } else {

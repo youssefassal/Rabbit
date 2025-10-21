@@ -37,19 +37,23 @@ const OrderDetailsPage = () => {
                 className={`${
                   orderDetails.isPaid
                     ? "text-green-700 bg-green-100"
-                    : "bg-red-100 text-red-700"
-                } px-3 py-1 rounded-full text-sm font-medium mb-2`}
-              >
-                Payment status: {orderDetails.isPaid ? "Approved" : "Pending"}
-              </span>
-              <span
-                className={`${
-                  orderDetails.isDelivered
-                    ? "text-green-700 bg-green-100"
                     : "bg-yellow-100 text-yellow-700"
                 } px-3 py-1 rounded-full text-sm font-medium mb-2`}
               >
-                Order status: {orderDetails.isDelivered ? "Delivered" : "Pending"}
+                Payment: {orderDetails.isPaid ? "Paid" : "Pending"}
+              </span>
+              <span
+                className={`${
+                  orderDetails.status === "Delivered"
+                    ? "text-green-700 bg-green-100"
+                    : orderDetails.status === "Cancelled"
+                    ? "text-red-700 bg-red-100"
+                    : orderDetails.status === "Shipped"
+                    ? "text-blue-700 bg-blue-100"
+                    : "text-gray-700 bg-gray-100"
+                } px-3 py-1 rounded-full text-sm font-medium mb-2`}
+              >
+                Order: {orderDetails.status || "Processing"}
               </span>
             </div>
           </div>
@@ -57,15 +61,44 @@ const OrderDetailsPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
             <div>
               <h4 className="text-lg font-semibold mb-2">Payment Info</h4>
-              <p>Payment Method: {orderDetails.paymentMethod}</p>
-              <p>Status: {orderDetails.isPaid ? "Paid" : "Unpaid"}</p>
+              <p className="text-gray-600">
+                Payment Method:{" "}
+                <span className="font-medium text-gray-900">
+                  {orderDetails.paymentMethod || "N/A"}
+                </span>
+              </p>
+              <p className="text-gray-600">
+                Status:{" "}
+                <span
+                  className={`font-medium ${
+                    orderDetails.isPaid ? "text-green-600" : "text-yellow-600"
+                  }`}
+                >
+                  {orderDetails.isPaid ? "Paid" : "Pending"}
+                </span>
+              </p>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-2">Shipping Info</h4>
-              <p>Shipping Method: {orderDetails.shippingMethod}</p>
-              <p>
+              <p className="text-gray-600">
+                Order Status:{" "}
+                <span
+                  className={`font-medium ${
+                    orderDetails.status === "Delivered"
+                      ? "text-green-600"
+                      : orderDetails.status === "Cancelled"
+                      ? "text-red-600"
+                      : orderDetails.status === "Shipped"
+                      ? "text-blue-600"
+                      : "text-gray-900"
+                  }`}
+                >
+                  {orderDetails.status || "Processing"}
+                </span>
+              </p>
+              <p className="text-gray-600">
                 Address:{" "}
-                {`${orderDetails.shippingAddress.city}, ${orderDetails.shippingAddress.country}`}
+                <span className="font-medium text-gray-900">{`${orderDetails.shippingAddress.city}, ${orderDetails.shippingAddress.country}`}</span>
               </p>
             </div>
           </div>

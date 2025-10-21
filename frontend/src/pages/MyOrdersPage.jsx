@@ -69,15 +69,30 @@ const MyOrdersPage = () => {
                     ${order.totalPrice}
                   </td>
                   <td className="px-2 py-2 sm:py-4 sm:px-4">
-                    <span
-                      className={`${
-                        order.isPaid
-                          ? "text-green-700 bg-green-100"
-                          : "text-red-700 bg-red-100"
-                      } px-2 py-1 rounded-full text-xs sm:text-sm font-medium text-center`}
-                    >
-                      {order.isPaid ? "Paid" : "Pending"}
-                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span
+                        className={`${
+                          order.isPaid
+                            ? "text-green-700 bg-green-100"
+                            : "text-yellow-700 bg-yellow-100"
+                        } px-2 py-1 rounded-full text-xs font-medium text-center`}
+                      >
+                        {order.isPaid ? "Paid" : "Pending"}
+                      </span>
+                      <span
+                        className={`${
+                          order.status === "Delivered"
+                            ? "text-green-700 bg-green-100"
+                            : order.status === "Cancelled"
+                            ? "text-red-700 bg-red-100"
+                            : order.status === "Shipped"
+                            ? "text-blue-700 bg-blue-100"
+                            : "text-gray-700 bg-gray-100"
+                        } px-2 py-1 rounded-full text-xs font-medium text-center`}
+                      >
+                        {order.status || "Processing"}
+                      </span>
+                    </div>
                   </td>
                 </tr>
               ))

@@ -42,6 +42,27 @@ export const updateOrderStatus = createAsyncThunk(
   }
 );
 
+// Mark order as paid and delivered (admin only)
+export const markOrderPaidAndDelivered = createAsyncThunk(
+  "admin/markOrderPaidAndDelivered",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/orders/${id}`,
+        { markAsPaidAndDelivered: true },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // Delete an order (admin only)
 export const deleteOrder = createAsyncThunk(
   "admin/deleteOrder",
@@ -96,6 +117,16 @@ const adminOrderSlice = createSlice({
       })
       // Update order status
       .addCase(updateOrderStatus.fulfilled, (state, action) => {
+        const updatedOrder = action.payload;
+        const orderIndex = state.orders.findIndex(
+          (order) => order._id === updatedOrder._id
+        );
+        if (orderIndex !== -1) {
+          state.orders[orderIndex] = updatedOrder;
+        }
+      })
+      // Mark order as paid and delivered
+      .addCase(markOrderPaidAndDelivered.fulfilled, (state, action) => {
         const updatedOrder = action.payload;
         const orderIndex = state.orders.findIndex(
           (order) => order._id === updatedOrder._id
