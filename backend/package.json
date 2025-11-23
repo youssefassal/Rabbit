@@ -6,14 +6,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
-    "seed": "node seeder.js",
-    "test": "jest"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./tests/setup.js"
-    ]
+    "seed": "node seeder.js"
   },
   "keywords": [],
   "author": "",
@@ -25,16 +18,10 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "express-rate-limit": "^8.2.1",
-    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
     "streamifier": "^0.1.1"
-  },
-  "devDependencies": {
-    "jest": "^30.2.0",
-    "supertest": "^7.1.4"
   }
 }
