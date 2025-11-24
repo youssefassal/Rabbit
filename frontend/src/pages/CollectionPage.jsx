@@ -18,7 +18,7 @@ const CollectionPage = () => {
 
   useEffect(() => {
     dispatch(fetchProductsByFilters({collection, ...queryParams}));
-  }, [dispatch, collection, searchParams]);
+  }, [dispatch, collection, searchParams, queryParams]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
