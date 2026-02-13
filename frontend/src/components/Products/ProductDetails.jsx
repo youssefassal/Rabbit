@@ -13,7 +13,7 @@ const ProductDetails = ({ productId }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { selectedProduct, loading, error, similarProducts } = useSelector(
-    (state) => state.products
+    (state) => state.products,
   );
   const { user, guestId } = useSelector((state) => state.auth);
   const [mainImage, setMainImage] = useState("");
@@ -60,7 +60,7 @@ const ProductDetails = ({ productId }) => {
         color: selectedColor,
         guestId,
         userId: user?._id,
-      })
+      }),
     )
       .then(() => {
         toast.success("Product added to cart!", {
@@ -96,6 +96,10 @@ const ProductDetails = ({ productId }) => {
                     mainImage === img.url ? "ring-2 ring-black" : ""
                   }`}
                   onClick={() => setMainImage(img.url)}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/400?text=No+Image";
+                  }}
                 />
               ))}
             </div>
@@ -107,6 +111,10 @@ const ProductDetails = ({ productId }) => {
                   src={mainImage || selectedProduct.images[0]?.url}
                   alt={selectedProduct.images[0]?.altText || "Main Image"}
                   className="w-full h-auto object-cover rounded-lg"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/400?text=No+Image";
+                  }}
                 />
               </div>
             </div>
@@ -122,6 +130,10 @@ const ProductDetails = ({ productId }) => {
                     mainImage === img.url ? "ring-2 ring-black" : ""
                   }`}
                   onClick={() => setMainImage(img.url)}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/400?text=No+Image";
+                  }}
                 />
               ))}
             </div>

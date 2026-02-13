@@ -17,7 +17,7 @@ const NewArrivals = () => {
     const fetchNewArrivals = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`,
         );
         setNewArrivals(response.data);
       } catch (error) {
@@ -71,7 +71,7 @@ const NewArrivals = () => {
       updateScrollButtons();
       return () => container.removeEventListener("scroll", updateScrollButtons);
     }
-  }, [ newArrivals ]);
+  }, [newArrivals]);
 
   return (
     <section className="py-16 px-4 lg:px-0">
@@ -130,10 +130,16 @@ const NewArrivals = () => {
             className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] shadow-md relative"
           >
             <img
-              src={product.images[0]?.url}
+              src={
+                product.images[0]?.url ||
+                "https://via.placeholder.com/400?text=No+Image"
+              }
               alt={product.images[0]?.altText || product.name}
               className="w-full h-[500px] object-cover rounded-lg"
               draggable="false"
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/400?text=No+Image";
+              }}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4 rounded-b-lg">
               <Link

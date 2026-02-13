@@ -19,9 +19,16 @@ const ProductGrid = ({ products, loading, error }) => {
           <div className="bg-white rounded-lg">
             <div className="w-full h-96 mb-4">
               <img
-                src={product.images[0].url}
-                alt={product.images[0].altText || product.name}
+                src={
+                  product.images[0]?.url ||
+                  "https://via.placeholder.com/400?text=No+Image"
+                }
+                alt={product.images[0]?.altText || product.name}
                 className="w-full h-full object-cover rounded-lg hover:scale-90 transition-transform duration-300"
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/400?text=No+Image";
+                }}
               />
             </div>
             <div className="pl-3 pb-4">

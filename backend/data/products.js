@@ -378,7 +378,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://img.fruugo.com/product/1/16/1689404161_max.jpg",
+        url: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/811338s.jpg?im=Resize,width=750",
         altText: "Chino Pants Front View",
       },
     ],

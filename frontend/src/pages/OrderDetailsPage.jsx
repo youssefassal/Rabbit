@@ -47,10 +47,10 @@ const OrderDetailsPage = () => {
                   orderDetails.status === "Delivered"
                     ? "text-green-700 bg-green-100"
                     : orderDetails.status === "Cancelled"
-                    ? "text-red-700 bg-red-100"
-                    : orderDetails.status === "Shipped"
-                    ? "text-blue-700 bg-blue-100"
-                    : "text-gray-700 bg-gray-100"
+                      ? "text-red-700 bg-red-100"
+                      : orderDetails.status === "Shipped"
+                        ? "text-blue-700 bg-blue-100"
+                        : "text-gray-700 bg-gray-100"
                 } px-3 py-1 rounded-full text-sm font-medium mb-2`}
               >
                 Order: {orderDetails.status || "Processing"}
@@ -87,10 +87,10 @@ const OrderDetailsPage = () => {
                     orderDetails.status === "Delivered"
                       ? "text-green-600"
                       : orderDetails.status === "Cancelled"
-                      ? "text-red-600"
-                      : orderDetails.status === "Shipped"
-                      ? "text-blue-600"
-                      : "text-gray-900"
+                        ? "text-red-600"
+                        : orderDetails.status === "Shipped"
+                          ? "text-blue-600"
+                          : "text-gray-900"
                   }`}
                 >
                   {orderDetails.status || "Processing"}
@@ -119,9 +119,16 @@ const OrderDetailsPage = () => {
                   <tr key={item.productId} className="border-b border-gray-300">
                     <td className="py-2 px-4 flex items-center">
                       <img
-                        src={item.image}
+                        src={
+                          item.image ||
+                          "https://via.placeholder.com/400?text=No+Image"
+                        }
                         alt={item.name}
                         className="w-12 h-12 object-cover rounded-lg mr-4"
+                        onError={(e) => {
+                          e.target.src =
+                            "https://via.placeholder.com/400?text=No+Image";
+                        }}
                       />
                       <Link
                         to={`/product/${item.productId}`}

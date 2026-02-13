@@ -7,18 +7,18 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slices/productsSlice";
 const CollectionPage = () => {
-  const {collection} = useParams();
+  const { collection } = useParams();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const {products, loading, error} = useSelector((state) => state.products);
-  const queryParams = Object.fromEntries([...searchParams]);
+  const { products, loading, error } = useSelector((state) => state.products);
 
   const sidebarRef = useRef(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchProductsByFilters({collection, ...queryParams}));
-  }, [dispatch, collection, searchParams, queryParams]);
+    const queryParams = Object.fromEntries([...searchParams]);
+    dispatch(fetchProductsByFilters({ collection, ...queryParams }));
+  }, [dispatch, collection, searchParams]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -35,9 +35,8 @@ const CollectionPage = () => {
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    }
-  } , []);
-
+    };
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row">
@@ -68,8 +67,6 @@ const CollectionPage = () => {
         {/* Product Grid */}
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
-
-
     </div>
   );
 };

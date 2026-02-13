@@ -39,7 +39,7 @@ const Checkout = () => {
           shippingAddress,
           paymentMethod: "pending", // Initially set as pending, will be updated when payment method is selected
           totalPrice: cart.totalPrice,
-        })
+        }),
       );
       if (res.payload && res.payload._id) {
         setCheckoutId(res.payload._id); // set checkoutId if checkout creation is successful
@@ -56,7 +56,7 @@ const Checkout = () => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
-        }
+        },
       );
 
       await handleFinalizeCheckout(checkoutId);
@@ -76,7 +76,7 @@ const Checkout = () => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
-        }
+        },
       );
       navigate("/order-confirmation");
     } catch (error) {
@@ -100,7 +100,7 @@ const Checkout = () => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
-        }
+        },
       );
 
       // Finalize the checkout for COD
@@ -264,7 +264,7 @@ const Checkout = () => {
                     console.error("PayPal payment error:", err);
                     const errorMessage = err.message || "Unknown payment error";
                     alert(
-                      `Payment failed. Please try again.\nError: ${errorMessage}`
+                      `Payment failed. Please try again.\nError: ${errorMessage}`,
                     );
                   }}
                 />
@@ -301,9 +301,16 @@ const Checkout = () => {
             >
               <div className="flex items-start">
                 <img
-                  src={product.image}
+                  src={
+                    product.image ||
+                    "https://via.placeholder.com/400?text=No+Image"
+                  }
                   alt={product.name}
                   className="w-20 h-20 object-cover mr-4"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/400?text=No+Image";
+                  }}
                 />
                 <div>
                   <h3 className="text-md">{product.name}</h3>

@@ -20,7 +20,7 @@ const CartContents = ({ cart, userId, guestId }) => {
           userId,
           size,
           color,
-        })
+        }),
       );
     }
   };
@@ -38,9 +38,14 @@ const CartContents = ({ cart, userId, guestId }) => {
         >
           <div className="flex items-center">
             <img
-              src={product.image}
+              src={
+                product.image || "https://via.placeholder.com/400?text=No+Image"
+              }
               alt={product.name}
               className="w-20 h-24 object-cover mr-4 rounded"
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/400?text=No+Image";
+              }}
             />
             <div>
               <h3>{product.name}</h3>
@@ -55,7 +60,7 @@ const CartContents = ({ cart, userId, guestId }) => {
                       -1,
                       product.quantity,
                       product.size,
-                      product.color
+                      product.color,
                     )
                   }
                   className="border rounded px-2 py-1 text-xl font-medium hover:border-red-500 hover:text-red-500"
@@ -70,7 +75,7 @@ const CartContents = ({ cart, userId, guestId }) => {
                       1,
                       product.quantity,
                       product.size,
-                      product.color
+                      product.color,
                     )
                   }
                   className="border rounded px-2 py-1 text-xl font-medium hover:border-green-500 hover:text-green-500"
@@ -87,7 +92,7 @@ const CartContents = ({ cart, userId, guestId }) => {
                 handleRemoveFromCart(
                   product.productId,
                   product.size,
-                  product.color
+                  product.color,
                 )
               }
             >
