@@ -126,9 +126,15 @@ const Footer = () => {
         </div>
       </div>
       {/* footer bottom */}
-      <div className="container mx-auto text-center text-gray-500 text-sm mt-12 px-4 lg:px-0 border-t border-gray-200 pt-6">
-        <p className="mb-2 text-gray-500 text-sm tracking-tighter text-center">
+      <div className="container mx-auto mt-12 px-4 lg:px-0 border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-gray-500 text-sm">
+        <p className="tracking-tighter">
           &copy; {new Date().getFullYear()} Rabbit. All rights reserved.
+        </p>
+        <p>
+          Developed by{" "}
+          <a href="https://www.neosoftware.tech/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 hover:underline">
+            Neo Software
+          </a>
         </p>
       </div>
     </footer>
