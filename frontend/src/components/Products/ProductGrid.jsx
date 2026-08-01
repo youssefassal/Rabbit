@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FALLBACK_IMAGE } from "../../constants/images";
 
 const ProductGrid = ({ products, loading, error }) => {
   if (loading) {
@@ -20,14 +21,12 @@ const ProductGrid = ({ products, loading, error }) => {
             <div className="w-full h-96 mb-4">
               <img
                 src={
-                  product.images[0]?.url ||
-                  "https://via.placeholder.com/400?text=No+Image"
+                  product.images[0]?.url || FALLBACK_IMAGE
                 }
                 alt={product.images[0]?.altText || product.name}
                 className="w-full h-full object-cover rounded-lg hover:scale-90 transition-transform duration-300"
                 onError={(e) => {
-                  e.target.src =
-                    "https://via.placeholder.com/400?text=No+Image";
+                  e.target.src = FALLBACK_IMAGE;
                 }}
               />
             </div>

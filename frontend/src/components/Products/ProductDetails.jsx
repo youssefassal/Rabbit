@@ -8,6 +8,7 @@ import {
   fetchSimilarProducts,
 } from "../../redux/slices/productsSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
+import { FALLBACK_IMAGE } from "../../constants/images";
 
 const ProductDetails = ({ productId }) => {
   const { id } = useParams();
@@ -98,7 +99,7 @@ const ProductDetails = ({ productId }) => {
                   onClick={() => setMainImage(img.url)}
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/400?text=No+Image";
+                      FALLBACK_IMAGE;
                   }}
                 />
               ))}
@@ -113,7 +114,7 @@ const ProductDetails = ({ productId }) => {
                   className="w-full h-auto object-cover rounded-lg"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/400?text=No+Image";
+                      FALLBACK_IMAGE;
                   }}
                 />
               </div>
@@ -132,7 +133,7 @@ const ProductDetails = ({ productId }) => {
                   onClick={() => setMainImage(img.url)}
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/400?text=No+Image";
+                      FALLBACK_IMAGE;
                   }}
                 />
               ))}

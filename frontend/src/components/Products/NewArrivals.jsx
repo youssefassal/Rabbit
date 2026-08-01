@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { FALLBACK_IMAGE } from "../../constants/images";
 
 const NewArrivals = () => {
   const scrollRef = useRef(null);
@@ -131,14 +132,13 @@ const NewArrivals = () => {
           >
             <img
               src={
-                product.images[0]?.url ||
-                "https://via.placeholder.com/400?text=No+Image"
+                product.images[0]?.url || FALLBACK_IMAGE
               }
               alt={product.images[0]?.altText || product.name}
               className="w-full h-[500px] object-cover rounded-lg"
               draggable="false"
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/400?text=No+Image";
+                e.target.src = FALLBACK_IMAGE;
               }}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4 rounded-b-lg">

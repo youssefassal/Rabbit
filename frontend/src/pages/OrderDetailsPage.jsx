@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOrderDetails } from "../redux/slices/orderSlice";
+import { FALLBACK_IMAGE } from "../constants/images";
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -119,15 +120,11 @@ const OrderDetailsPage = () => {
                   <tr key={item.productId} className="border-b border-gray-300">
                     <td className="py-2 px-4 flex items-center">
                       <img
-                        src={
-                          item.image ||
-                          "https://via.placeholder.com/400?text=No+Image"
-                        }
+                        src={item.image || FALLBACK_IMAGE}
                         alt={item.name}
                         className="w-12 h-12 object-cover rounded-lg mr-4"
                         onError={(e) => {
-                          e.target.src =
-                            "https://via.placeholder.com/400?text=No+Image";
+                          e.target.src = FALLBACK_IMAGE;
                         }}
                       />
                       <Link

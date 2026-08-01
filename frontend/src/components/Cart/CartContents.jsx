@@ -4,6 +4,7 @@ import {
   removeFromCart,
   updateCartItemQuantity,
 } from "../../redux/slices/cartSlice";
+import { FALLBACK_IMAGE } from "../../constants/images";
 
 const CartContents = ({ cart, userId, guestId }) => {
   const dispatch = useDispatch();
@@ -38,13 +39,11 @@ const CartContents = ({ cart, userId, guestId }) => {
         >
           <div className="flex items-center">
             <img
-              src={
-                product.image || "https://via.placeholder.com/400?text=No+Image"
-              }
+              src={product.image || FALLBACK_IMAGE}
               alt={product.name}
               className="w-20 h-24 object-cover mr-4 rounded"
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/400?text=No+Image";
+                e.target.src = FALLBACK_IMAGE;
               }}
             />
             <div>

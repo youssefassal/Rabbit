@@ -4,6 +4,7 @@ import PayPalButton from "./PayPalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
 import axios from "axios";
+import { FALLBACK_IMAGE } from "../../constants/images";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -301,15 +302,11 @@ const Checkout = () => {
             >
               <div className="flex items-start">
                 <img
-                  src={
-                    product.image ||
-                    "https://via.placeholder.com/400?text=No+Image"
-                  }
+                  src={product.image || FALLBACK_IMAGE}
                   alt={product.name}
                   className="w-20 h-20 object-cover mr-4"
                   onError={(e) => {
-                    e.target.src =
-                      "https://via.placeholder.com/400?text=No+Image";
+                    e.target.src = FALLBACK_IMAGE;
                   }}
                 />
                 <div>

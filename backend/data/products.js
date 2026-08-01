@@ -18,7 +18,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://www.henbury.com/wp-content/uploads/2018/04/Untitled-design-2.png",
+        url: "https://picsum.photos/seed/oxsh001/400/500",
         altText: "Classic Oxford Button-Down Shirt Front View",
       },
       {
@@ -330,7 +330,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://images-cdn.ubuy.co.id/65396864bbbf8d46234b2013-g-gradual-men-39-s-sweatpants-with.jpg",
+        url: "https://picsum.photos/seed/bw003/400/500",
         altText: "Tapered Sweatpants Front View",
       },
     ],
@@ -426,7 +426,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://images-cdn.ubuy.com.sa/6538923538248b0d95060d27-plaid-plain-men-39-s-stretch-dress.jpg",
+        url: "https://picsum.photos/seed/bw007/400/500",
         altText: "Slim Fit Trousers Front View",
       },
     ],
@@ -522,7 +522,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://freakins.com/cdn/shop/files/Aniwarya01525-Edit_54ec0cce-3005-4ec8-abfb-c6781cb95cad.jpg?v=1749908409&width=700",
+        url: "https://picsum.photos/seed/bww001/400/500",
         altText: "High-Waist Skinny Jeans",
       },
     ],
@@ -594,7 +594,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://shop.mango.com/assets/rcs/pics/static/T1/fotos/S/17064089_56.jpg?imwidth=2048&imdensity=1&ts=1750323953653",
+        url: "https://picsum.photos/seed/bww004/400/500",
         altText: "Pleated Midi Skirt Front View",
       },
     ],
@@ -690,7 +690,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://img1.theiconic.com.au/Wf63ZMuxGaEOHOlQQoUxGz9Dk78=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fcotton-on-4005-7639232-1.jpg",
+        url: "https://picsum.photos/seed/bww008/400/500",
         altText: "Stretch Denim Shorts Front View",
       },
     ],
@@ -810,7 +810,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://img.fruugo.com/product/6/06/1513607066_max.jpg",
+        url: "https://picsum.photos/seed/tww003/400/500",
         altText: "Casual T-Shirt",
       },
     ],
